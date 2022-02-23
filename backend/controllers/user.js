@@ -7,8 +7,6 @@ import userService from "../services/user.js";
 //---------------------------------------------------------------------------------
 
 const registerUser = async (req, res) => {
-  if (!req.body.name || !req.body.email || !req.body.password)
-    return res.status(400).send({ message: "Incomplete data" });
 
   let pass = await bcrypt.hassGenerate(req.body.password);
 
@@ -34,14 +32,7 @@ const registerUser = async (req, res) => {
 //---------------------------------------------------------------------------------
 
 const registerAdminUser = async (req, res) => {
-  if (
-    !req.body.name ||
-    !req.body.email ||
-    !req.body.password ||
-    !req.body.role
-  )
-    return res.status(400).send({ message: "Incomplete data" });
-
+  
   const passHash = await bcrypt.hassGenerate(req.body.password, 10);
 
   const userRegister = new user({

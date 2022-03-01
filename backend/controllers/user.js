@@ -154,6 +154,15 @@ const deleteUser = async (req, res) => {
 
 //---------------------------------------------------------------------------------
 
+//---------------------------------------------------------------------------------
+
+const deleteAll = async (req, res) => {
+  const userDeleted = await user.deleteMany({});
+  return res.status(200).send({mesagge:"delete all"});
+};
+
+//---------------------------------------------------------------------------------
+
 const login = async (req, res) => {
   if (!req.body.email || !req.body.password)
     return res.status(400).send({ message: "Invalid Data" });
@@ -184,4 +193,5 @@ export default {
   login,
   getUserRole,
   list,
+  deleteAll
 };

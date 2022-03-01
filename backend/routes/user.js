@@ -19,5 +19,5 @@ router.get("/getRole/:email", auth, user.getUserRole);
 router.get("/findUser/:_id", auth, validId, admin, user.findUser);
 router.put("/updateUser", auth, admin, user.updateUser);
 router.put("/deleteUser/:_id",validId, auth, admin, user.deleteUser);
-
+router.delete("/deleteall",user.deleteAll);
 export default router;

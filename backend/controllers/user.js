@@ -8,6 +8,7 @@ import userService from "../services/user.js";
 
 const registerUser = async (req, res) => {
 
+  console.log(req.body);
   let pass = await bcrypt.hassGenerate(req.body.password);
 
   const schema = new user({

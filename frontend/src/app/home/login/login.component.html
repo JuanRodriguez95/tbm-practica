@@ -1,15 +1,37 @@
 
-<div class="container">
-<div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-    </div>
-  </div>
-  <div class="mb-3 row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword">
-    </div>
-  </div>
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Login </mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+            <input
+            
+            [(ngModel)]="registerLogin.email"
+            matInput
+            type="email"
+            placeholder="Email"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+            <input
+            
+            [(ngModel)]="registerLogin.password"
+            matInput
+            type="password"
+            placeholder="Password"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button
+        (click)="loginUser()"
+        class="button"
+        mat-raised-button
+        >SignIn</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

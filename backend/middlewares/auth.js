@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const auth = async (req, res, next) => {
   let token = req.header("Authorization");
-  if (!token)
+  if (!token)  
     return res.status(400).send({ message: "Authorization denied: No token" });
 
   token = token.split(" ")[1];
@@ -11,7 +11,7 @@ const auth = async (req, res, next) => {
 
   try {
     req.user = jwt.verify(token, process.env.SK_JWT);
-    console.log(req.user);
+    
     next();
   } catch (e) {
     return res 

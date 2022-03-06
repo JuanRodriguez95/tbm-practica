@@ -1,6 +1,7 @@
 import task from "../models/task.js";
 
 const saveTask = async (req, res) => {
+  console.log(req.body);
   if (!req.body.name || !req.body.description)
     return res.status(400).send({ message: "Incomplete data" });
 

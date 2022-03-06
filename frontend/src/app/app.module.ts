@@ -16,12 +16,25 @@ import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
 import { TaskService } from './services/task.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+
 import { AuthGuard } from './guard/auth.guard';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+//Material
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -39,8 +52,31 @@ import { AuthGuard } from './guard/auth.guard';
     ListRoleComponent,
     UpdateRoleComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [UserService, RoleService, TaskService,TokenInterceptorService,AuthGuard],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
+    MatSnackBarModule,
+  ],
+  providers: [
+    UserService,
+    RoleService,
+    TaskService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi:true//interceptar varios token, permite que se ejecuten varios procesos al mismo tiempo con us respectios token.
+    },
+    AuthGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
